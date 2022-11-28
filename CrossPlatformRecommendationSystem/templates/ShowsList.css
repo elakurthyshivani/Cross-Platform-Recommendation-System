@@ -1,0 +1,125 @@
+@charset "UTF-8";
+
+.shows-container    {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: #555;
+}
+
+.shows-container-2   {
+    display: flex;
+    flex-wrap: nowrap;
+    color: #555;
+    margin: 30px 0px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 345px; /*Includes scroll bar height*/
+    min-width: 100%;
+    width: 100%;
+    background-color: #EFEFEF;
+    padding: 15px;
+}
+
+.show-2     {
+    width: 180px; /*150px + 15px left padding + 15px right padding*/
+    padding: 15px;
+    margin-bottom: 15px;
+    height: auto;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.shows-container-2 .show-2  {
+    margin-top: 15px;
+}
+
+.show-name-2  {
+    padding: 0px 15px;
+    width: 150px;
+    font-weight: 0;
+    font-size: 0.9em;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.show-poster    {
+    width: 150px;
+    height: 225px;
+    border-radius: 10px;
+    transition: 0.4s;
+    opacity: 0.75;
+}
+
+.show-2:hover   {
+    opacity: 1;
+    background-color: #DDD;
+    border-radius: 10px;
+    transform: scale(1.1, 1.1);
+    z-index: 2;
+}
+
+.show-2:hover .show-name-2  {
+    width: 100%;
+}
+
+.show-user-rating   {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+.input-rating   {
+    padding: 7.5px 0px;
+    color: #555;
+    background-color: white;
+    transition: 0.4s;
+    width: 50px;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+/*Overriding the input:focus, input:active from Elements.css.*/
+.input-rating:focus, .input-rating:active    {
+    background-color: white;
+    padding: 7.5px 0px;
+}
+
+/*To remove increment number, decrement number icon from input number textfield*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.you-might-like-title   {
+    position: relative;
+}
+
+.shows-info {
+    font-size: 0.75em;
+    position: absolute;
+    padding-left: 60px;
+    top: -5px;
+    cursor: pointer;
+    color: #999;
+    transition: 0.4s;
+}
+
+.shows-info:hover   {
+    color: #FFA381;
+}

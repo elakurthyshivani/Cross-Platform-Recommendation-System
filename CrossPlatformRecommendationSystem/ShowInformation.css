@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+.show-form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    color: #555;
+    font-weight: normal;
+}
+
+.show-image-container   {
+    width: 20%;
+}
+
+.curr-show-poster    {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.show-details-container {
+    width: 80%;
+    padding-left: 30px;
+    display: block;
+}
+
+.details-row    {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.show-details-container .page-title   {
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.platform-logos   {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.platform-logo    {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    margin-left: 15px;
+}
+
+.details-row:last-child    {
+    margin-bottom: 0px;
+}
+
+.details-row:first-child    {
+    margin: 0px;
+}
+
+.details-row:nth-child(2)   {
+    color: #999;
+    font-variant: small-caps;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.label-values   {
+    font-weight: normal;
+    font-size: 0.9em;
+}
+
+.show-details-container .shows-container-2  {
+    margin: 15px 0px;
+}
+
+.user-show-input    {
+    background-color: #EFEFEF;
+    border-radius: 10px;
+    padding: 15px;
+    position: relative;
+}
+
+.user-show-input .set   {
+    float: left;
+}
+
+.user-show-input .set {
+    display: flex;
+    align-items: center ;
+}
+
+.user-show-input .user-show-buttons {
+    position: absolute;
+    top: -15px;
+    right: 15px;
+}
+
+.user-show-input .user-show-buttons span    {
+    padding: 5px;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid #CCC;
+    cursor: pointer;
+    transition: 0.4s;
+    font-size: 0.8em;
+    color: #FFA381;
+}
+
+.user-show-input .user-show-buttons span:last-child    {
+    color: tomato;
+}
+
+.user-show-input .user-show-buttons span:hover    {
+    background-color: #AAA;
+    border-color: #999;
+    color: white;
+    transform: scale(1.1, 1.1);
+}
+
+.input-rating   {
+    padding: 7.5px 0px;
+    color: #555;
+    background-color: white;
+    transition: 0.4s;
+    width: 50px;
+    font-size: 0.9em;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.set select {
+    padding: 7.5px;
+    font-size: 0.9em;
+    color: #555;
+    border: 0px;
+    border-bottom: 1.5px solid #FFCA7A;
+}
+
+/*Overriding the input:focus, input:active from Elements.css.*/
+.input-rating:focus, .input-rating:active    {
+    background-color: white;
+    padding: 7.5px 0px;
+}
+
+/*To remove increment number, decrement number icon from input number textfield*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

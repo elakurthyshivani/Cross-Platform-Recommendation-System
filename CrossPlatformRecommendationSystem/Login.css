@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+main    {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden; /* No scroll */
+}

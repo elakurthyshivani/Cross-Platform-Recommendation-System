@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.search-button   {
+    cursor: pointer;
+    border-radius: 50%;
+    color: #8F7075;
+    transition: 0.4s;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 20px;
+    background-color: #EEE;
+}
+
+.search-button:hover   {
+    color: #97BEBD;
+    background-color: #CCC;
+}
+
+.search-input   {
+    margin-left: 66.6%;
+    border-top: 2px solid #EEE;
+    border-left: 2px solid #EEE;
+    border-bottom: 2px solid #EEE;
+    /*background-color: #8F707550;*/
+    border-radius: 50px;
+}
+
+.search-input:focus, .search-input:active    {
+    background-color: white;
+    padding-left: 30px;
+}

@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+.form-2 {
+    display: flex;
+}
+
+.left   {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.right  {
+    height: 100%;
+    padding-left: 30px;
+}
+
+.profile-photo  {
+    width: 100%;
+    background-image: url("images/example_poster.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+}
+
+.delete-account {
+    position: absolute;
+    bottom: 45px;
+    left: 0px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+button  {
+    background-color: transparent;
+    border: 0px;
+    font-weight: bold;
+}
+
+.main  {
+    position: relative;
+}
+
+.delete-account-container   {
+    display: none;
+    position: absolute;
+    bottom: -300px;
+    left: 45px;
+    z-index: 5;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.delete-form   {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+}
+
+.delete-account-container input[type="submit"]  {
+    margin-left: 0px;
+}
+
+.delete-account-container .close   {
+    text-align: right;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.delete-account-container .close:hover   {
+    color: #AAA;
+}
