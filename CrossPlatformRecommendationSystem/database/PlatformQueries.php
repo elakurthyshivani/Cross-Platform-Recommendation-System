@@ -1,7 +1,7 @@
 <?php
 function getAllPlatforms()    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -21,7 +21,7 @@ function getAllPlatforms()    {
 
 function addPlatformPreferences($userID, $selectedPlatformIDs)    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -42,7 +42,7 @@ function addPlatformPreferences($userID, $selectedPlatformIDs)    {
 
 function getPlatformPreferences($userID)    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/

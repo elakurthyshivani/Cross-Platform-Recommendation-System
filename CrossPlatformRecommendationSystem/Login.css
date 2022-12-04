@@ -6,3 +6,10 @@ main    {
     align-items: center;
     overflow: hidden; /* No scroll */
 }
+
+/*To enable scrolling.*/
+.half-page-content  {
+    display: block;
+    padding: 30px;
+    overflow-y: auto;
+}

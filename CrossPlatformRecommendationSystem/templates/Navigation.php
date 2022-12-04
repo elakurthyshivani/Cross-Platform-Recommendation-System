@@ -18,7 +18,11 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
 </template>
 <template id="navigation_with_buttons_template">
     <nav class="col-12">
-        <img class="logo" src="images/logo.png" />
+        <form method="post" name="goToHomeForm" action="Homepage.php">
+            <button type="submit" name="home_button" class="home-button">
+                <img class="logo" src="images/logo.png" />
+            </button>
+        </form>
         <div class="nav-buttons-container">
             <form method="get" name="searchForm" class="search-form" action="Search.php"
                     onsubmit="return toggleSearchBar(this)">

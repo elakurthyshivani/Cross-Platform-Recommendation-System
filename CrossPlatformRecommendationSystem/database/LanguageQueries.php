@@ -1,7 +1,7 @@
 <?php
 function getLanguage($languageID)    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -17,7 +17,7 @@ function getLanguage($languageID)    {
 
 function getAllLanguages()    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -37,7 +37,7 @@ function getAllLanguages()    {
 
 function addLanguagePreferences($userID, $selectedLanguageIDs)    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -58,7 +58,7 @@ function addLanguagePreferences($userID, $selectedLanguageIDs)    {
 
 function getLanguagePreferences($userID)  {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/

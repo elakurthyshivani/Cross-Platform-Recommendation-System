@@ -108,7 +108,8 @@ if(isset($_COOKIE['admin_cprs_token']))    {
                     <div class="col-12 sharing-input-button">
                         <input class="col-12" type="password" name="admin_password" required />
                         <div class="password-visible material-symbols-outlined"
-                                title="Show Password">visibility</div>
+                                title="Show Password" onclick="togglePasswordVisibility(this)">
+                            visibility</div>
                     </div>
                     <input type="submit" class="col-6 form-button" title="Login" 
                             value="Login" name="login" />

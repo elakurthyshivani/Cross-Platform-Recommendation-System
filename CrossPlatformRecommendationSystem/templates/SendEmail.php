@@ -1,7 +1,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require 'C:/Users/elaku/vendor/autoload.php';
+require 'C:/xampp/php/vendor/autoload.php';
 
 
 /*Using Outlook's SMTP because Gmail's SMTP is failing the authentication.

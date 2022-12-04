@@ -1,7 +1,7 @@
 <?php
 function addNewUserRatings($userID, $ratings)    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     $q="INSERT INTO Ratings (userID, contentID, rating) VALUES ";
@@ -21,7 +21,7 @@ function addNewUserRatings($userID, $ratings)    {
 
 function getRating($userID, $showID)    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -37,7 +37,7 @@ function getRating($userID, $showID)    {
 
 function setRating($userID, $showID, $rating)    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     $r=false;
@@ -56,7 +56,7 @@ function setRating($userID, $showID, $rating)    {
 
 function deleteRating($userID, $showID) {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     $q="DELETE FROM Ratings WHERE userID=$userID AND contentID=$showID;";
@@ -68,7 +68,7 @@ function deleteRating($userID, $showID) {
 
 function getAllRatingsForShow($showID)  {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -84,11 +84,12 @@ function getAllRatingsForShow($showID)  {
 
 function getAllRatings()    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
-    $q="SELECT * FROM Ratings ORDER BY ratedAt DESC;";
+    $q="SELECT userID, title, contentID, rating, DATE_FORMAT(ratedAt,'%H:%i %p, %e %M %Y') AS ratedAt ".
+            "FROM Ratings, Shows WHERE showID=contentID ORDER BY ratedAt DESC;";
     $results=array();
     $r=mysqli_query($conn, $q);
     if(mysqli_num_rows($r)>0) {
@@ -100,5 +101,18 @@ function getAllRatings()    {
     }
     mysqli_close($conn);
     return $results;
+}
+
+function removeRating($userID, $contentID)   {
+    /* Make a connection to the database */
+    $conn = mysqli_connect("localhost", "root", "", "cprs");
+    if(!$conn) die("Connection failed : ".mysqli_connect_error());
+    
+    /* Deleting the user from the database.*/
+    $q="DELETE FROM Ratings WHERE userID=$userID AND contentID=$contentID";
+    $result=mysqli_query($conn, $q);
+
+    mysqli_close($conn);
+    return $result;
 }
 ?>

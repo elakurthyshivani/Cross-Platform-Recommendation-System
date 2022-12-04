@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+table   {
+    border: 0px;
+    margin: 15px 0px;
+}
+
+tr {
+    border: 0px;
+    transition: 0.4s;
+}
+
+td, th  {
+    border: 0px;
+    padding: 7.5px 15px;
+}
+
+th  {
+    background-color: #FFCA7A;
+    color: #FFF;
+}
+
+td  {
+    color: #555;
+    font-weight: normal;
+}
+
+.show-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.user-id, .rating, .delete-link, .count-of-ratings   {
+    text-align: center;
+}
+
+tr:nth-child(even)  {
+    background-color: #EEE;
+}
+
+.rating {
+    font-weight: bold;
+}
+
+a   {
+    font-weight: bold;
+}
+
+button   {
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+
+tr:hover  {
+    background-color: #DDD;
+}

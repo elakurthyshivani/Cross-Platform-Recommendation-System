@@ -54,13 +54,18 @@ if($_SERVER["REQUEST_METHOD"]=="POST")  {
 }
 
 $show_details=array();
+$similar_content=array();
 if($showID!=null)  {
     $show_details=getShowDetails($showID);
-    $show_details['user_rating']=getRating($userID, $showID);
-    $show_details['user_status']=getStatus($userID, $showID);
-    $x=getAllRatingsForShow($showID);
-    $show_details['sum_user_rated_ratings']=$x['S'];
-    $show_details['count_user_rated_ratings']=$x['C'];
+    if(sizeof($show_details)>0) {
+        $show_details['user_rating']=getRating($userID, $showID);
+        $show_details['user_status']=getStatus($userID, $showID);
+        $x=getAllRatingsForShow($showID);
+        $show_details['sum_user_rated_ratings']=$x['S'];
+        $show_details['count_user_rated_ratings']=$x['C'];
+
+        $similar_content=getSimilarContent($showID);
+    }
 }
 ?>
 
@@ -104,7 +109,7 @@ if($showID!=null)  {
         
             <div class="full-page-content col-12"> 
             <?php
-            if($showID!=null and sizeof($show_details)>0)   {
+            if($showID!=null && sizeof($show_details)>0)   {
             ?>
                 <form class="form-1 show-form" name="searchForm" method="post"
                         onsubmit="return validateRatingAndStatus()"
@@ -256,21 +261,33 @@ if($showID!=null)  {
                             </div>
 
                             <!-- Similar Content -->
+                        <?php
+                        if(sizeof($similar_content)>0)   {
+                        ?>
                             <div class="form-label col-12">Similar Content</div>
                             <div class="shows-container-2" id="currently_watching">
                             <?php
-                            for($i=0; $i<10; $i++)  {
+                            for($i=0; $i<sizeof($similar_content); $i++)  {
                             ?>
-                                <div class="show-2">
-                                    <img class="show-poster" src="images/example_poster.jpg" />
-                                    <div class="show-name-2">ManifestManifest ManifestManifest</div>
-                                </div>
-                                <div class="show-2">
-                                    <img class="show-poster" src="images/example_poster_2.jpg" />
-                                    <div class="show-name-2">Mismatched</div>
+                                <div class="show-2" title="<?php echo $similar_content[$i]['title']; ?>"
+                                        onclick="goToShow(<?php echo '\''.$similar_content[$i]['showID'].'\''; ?>)">
+                                <?php 
+                                if($similar_content[$i]['posterURL']!="")  {
+                                ?>
+                                    <img class="show-poster" 
+                                            src="<?php echo $similar_content[$i]['posterURL']; ?>" />
+                                <?php 
+                                }
+                                else    { ?>
+                                    <img class="show-poster" src="images/no_image.jpg" />
+                                <?php } ?>
+                                    <div class="show-name-2">
+                                        <?php echo $similar_content[$i]['title']; ?>
+                                    </div>
                                 </div>
                             <?php } ?>
                             </div>
+                        <?php } ?>
                         </div>
                 </form>
             <?php 

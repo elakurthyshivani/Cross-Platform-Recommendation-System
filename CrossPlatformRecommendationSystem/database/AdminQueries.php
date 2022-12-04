@@ -1,7 +1,7 @@
 <?php
 function isAdminAlreadyLoggedIn($sessionID, $token) {
     /*Make a connection to the database*/
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
     
     /*Decrypting token*/
@@ -19,7 +19,7 @@ function isAdminAlreadyLoggedIn($sessionID, $token) {
 
 function getAdminID($email)   {
     /*Make a connection to the database*/
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /*Encrypting password*/
@@ -37,7 +37,7 @@ function getAdminID($email)   {
 
 function updateAdminSessionIDAndToken($adminID, $sessionID, $token)  {
     /*Make a connection to the database*/
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
     
     /*Encrypting password*/

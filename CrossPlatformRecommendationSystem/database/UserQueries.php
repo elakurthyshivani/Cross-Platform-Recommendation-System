@@ -14,7 +14,7 @@ function generateRandomToken() {
 function insertUser($name, $email, $password)   {
 
     /*Make a connection to the database*/
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
     
     /*Encrypting password*/
@@ -31,7 +31,7 @@ function insertUser($name, $email, $password)   {
 
 function isUserAlreadyLoggedIn($sessionID, $token) {
     /*Make a connection to the database*/
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
     
     /*Decrypting token*/
@@ -51,7 +51,7 @@ function isUserAlreadyLoggedIn($sessionID, $token) {
 
 function getUserID($email)   {
     /*Make a connection to the database*/
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     $q="SELECT userID, isNewUser, password FROM User ".
@@ -67,7 +67,7 @@ function getUserID($email)   {
 
 function updateSessionIDAndToken($userID, $sessionID, $token)  {
     /*Make a connection to the database*/
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
     
     /*Encrypting password*/
@@ -84,7 +84,7 @@ function updateSessionIDAndToken($userID, $sessionID, $token)  {
 
 function accountExists($email)  {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -100,7 +100,7 @@ function accountExists($email)  {
 
 function changeUserFromNewToExisting($userID)   {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -112,21 +112,30 @@ function changeUserFromNewToExisting($userID)   {
 
 function getAllUsers()   {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
     
     /* Getting all the users from the database.*/
-    $q="SELECT userID, name, email, registrationDate FROM user";
-    $result=mysqli_query($conn, $q);
-
+    $q="SELECT U.userID, email, DATE_FORMAT(registrationDate,'%H:%i %p, %e %M %Y') AS registrationDate, ".
+            "COUNT(R.rating) as countOfRatings FROM User U LEFT JOIN Ratings R ON ".
+            "U.userID=R.userID WHERE isAccountDeleted ".
+            "IS FALSE GROUP BY U.userID ORDER BY registrationDate DESC;";
+    $results=array();
+    $r=mysqli_query($conn, $q);
+    if(mysqli_num_rows($r)>0) {
+        $i=0;
+        while($i<mysqli_num_rows($r))    {
+            $results[$i]=mysqli_fetch_assoc($r);
+            $i+=1;
+        }
+    }
     mysqli_close($conn);
-
-    return $result;
+    return $results;
 }
 
 function getUserDetails($userID)    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -142,7 +151,7 @@ function getUserDetails($userID)    {
 
 function updateUserDetails($userID, $name, $email, $password, $photo) {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -158,7 +167,7 @@ function updateUserDetails($userID, $name, $email, $password, $photo) {
 
 function deleteUser($userID) {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -171,7 +180,7 @@ function deleteUser($userID) {
 
 function updatePassword($userID, $password) {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/

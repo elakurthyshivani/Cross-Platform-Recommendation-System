@@ -2,7 +2,7 @@
 
 function search($keyword)   {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
     
     $keyword="%".str_replace(" ", "%", $keyword)."%";
@@ -24,7 +24,7 @@ function search($keyword)   {
 
 function getShowDetails($showID)    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -40,7 +40,7 @@ function getShowDetails($showID)    {
 
 function getTopRatedShows($userID, $count=100)  {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -63,7 +63,7 @@ function getTopRatedShows($userID, $count=100)  {
 
 function getCurrentlyWatching($userID)  { 
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -84,7 +84,7 @@ function getCurrentlyWatching($userID)  {
 
 function getWishlist($userID)  { 
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -105,12 +105,33 @@ function getWishlist($userID)  {
 
 function getRecommendations($userID)    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
     $q="SELECT showID, title, posterURL, platformIDs FROM PersonalizedRecommendations, ".
             "Shows WHERE userID=$userID AND showID=contentID ORDER BY RAND();";
+    $results=array();
+    $r=mysqli_query($conn, $q);
+    if(mysqli_num_rows($r)>0) {
+        $i=0;
+        while($i<mysqli_num_rows($r))    {
+            $results[$i]=mysqli_fetch_assoc($r);
+            $i+=1;
+        }
+    }
+    mysqli_close($conn);
+    return $results;
+}
+
+function getSimilarContent($showID)    {
+    /* Make a connection to the database */
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
+    if(!$conn) die("Connection failed : ".mysqli_connect_error());
+
+    /* Getting the user from the database.*/
+    $q="SELECT showID, title, posterURL, platformIDs FROM SimilarContent, ".
+            "Shows WHERE contentID=$showID AND showID=similarContentID ORDER BY RAND();";
     $results=array();
     $r=mysqli_query($conn, $q);
     if(mysqli_num_rows($r)>0) {

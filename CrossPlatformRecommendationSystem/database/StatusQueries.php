@@ -10,7 +10,7 @@ define("STATUSES", array("Not Yet Started", "Currently Watching",
 
 function getStatus($userID, $showID)    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     /* Getting the user from the database.*/
@@ -26,7 +26,7 @@ function getStatus($userID, $showID)    {
 
 function addNewUserStatuses($userID, $showIDs)  {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     $q="INSERT INTO Status (userID, contentID, status) VALUES ";
@@ -45,7 +45,7 @@ function addNewUserStatuses($userID, $showIDs)  {
 
 function setStatus($userID, $showID, $status)    {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     $r=false;
@@ -64,7 +64,7 @@ function setStatus($userID, $showID, $status)    {
 
 function deleteStatus($userID, $showID) {
     /* Make a connection to the database */
-    $conn=mysqli_connect("localhost:3309", "root", "", "cprs");
+    $conn=mysqli_connect("localhost", "root", "", "cprs");
     if(!$conn) die("Connection failed : ".mysqli_connect_error());
 
     $q="DELETE FROM Status WHERE userID=$userID AND contentID=$showID;";

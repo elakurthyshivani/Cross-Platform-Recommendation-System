@@ -16,9 +16,10 @@ nav {
     justify-content: end;
 }
 
-.nav-buttons-container button   {
+button   {
     border: 0;
     background: none;
+    cursor: pointer;
 }
 
 .search-form    {
