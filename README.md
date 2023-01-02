@@ -21,3 +21,7 @@ php composer.phar require phpmailer/phpmailer
 ``` 
 
 A folder `vendor` with be created which consists of the folders `composer` and `phpmailer`, and the file `autoload.php`.
+
+## License
+
+[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
